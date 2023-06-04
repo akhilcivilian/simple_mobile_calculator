@@ -1,0 +1,154 @@
+<html>
+<head> 
+	<meta name='viewport'content='width=device-width,initial-scale=1'/>
+</head>
+<title>Akhil's first Calculator V2</title>
+<h3>Akhil's first Calculator V2</h3>
+<style>
+#keys[type=button],#opkeys[type=button],#anskeys[type=button]
+{
+	background-color:white;
+    color:black;
+    border:none;
+    font-size:250%;
+    width:25%;
+    height:10%;
+	float:left;
+}
+#keys[type=button]:hover
+{
+	background-color:royalblue;
+    color:white;
+}
+#opkeys[type=button]:hover
+{
+	background-color:forestgreen;
+    color:white;
+}
+#anskeys[type=button]:hover
+{
+	background-color:gold;
+    color:black;
+}
+#Ckeys[type=button],#CLRkeys[type=button]
+{
+	background-color:white;
+    color:black;
+    border:none;
+    text-color:black;
+    font-size:200%;
+    width:20%;
+    height:12%;
+    margin-top:5%;
+    margin-bottom:1%;
+	margin-left:0.5%;
+}
+#Ckeys[type=button]:hover,#CLRkeys[type=button]:hover
+{
+	background-color:red;
+    color:white;
+}
+#box[type=text]
+{
+    border:0;
+    height:25%;
+    width:100%;
+    font-size:250%;
+    float:center;
+}
+#ansbox[type=text]
+{
+    border:none;
+    height:10%;
+    width:100%;
+	font-size:200%;
+    text-align:right;
+    margin-bottom:0%;
+    float:center;
+}
+#datebox[type=text]
+{
+	border:none;
+	background-color:black;
+	border-radius:2px;
+    height:7%;
+    width:30%;
+    color:white;
+    font-size:105%;
+    text-align:center;
+    margin-top:2%;
+	margin-left:13.25%;
+	margin-right:13.25%;
+    margin-bottom:2%;
+    float:center;
+}
+div
+{
+	background-color:beige;
+    border:1%;
+	border-style:inset;
+	width:97%;
+    height:98%;
+    border-style:solid;
+    border-radius:1%;
+	padding:0.5%;
+}
+</style>
+<script>
+	function dis(chr)
+	{
+    	document.getElementById('box').value=document.getElementById('box').value+chr;
+        document.getElementById('ansbox').value=eval(document.getElementById('box').value);
+	}
+	function eq()
+	{
+		let x=document.getElementById('box').value;
+		let y=eval(x);
+		document.getElementById('box').value=y;
+	}
+    function clr()
+    {
+    	let x=document.getElementById('box').value;
+        document.getElementById('box').value=x.slice(0,x.length-1);
+        document.getElementById('ansbox').value=eval(x.slice(0,x.length-1));
+    }
+    function reset()
+    {
+    	document.getElementById('box').value='';document.getElementById('ansbox').value='0.00';
+    }
+</script>
+<body>
+<div>
+	<input type='text' id='box'/></br>
+    <input type='text' id='ansbox' value='0.00'/></br>
+    <input type='button' id='Ckeys' value='C' onclick="reset()"/>
+    <input type='text' id='datebox'/>
+    	<script>
+        	function dis_time()
+            {
+        	    var dat=new Date();
+    			var y=' '+(('0'+dat.getHours()%12).slice(-2))+':'+(('0'+dat.getMinutes()).slice(-2))+':'+(('0'+dat.getSeconds()).slice(-2))+(dat.getHours()>=12?' PM':' AM');
+        		document.getElementById('datebox').value=y.toString();
+             }   
+             setInterval(dis_time,1);
+        </script>
+    <input type='button' id='CLRkeys' value='CLR' onclick='clr()'/></br>
+	<input type='button' id='keys' value='7' onclick='dis(7)'/>
+	<input type='button' id='keys' value='8' onclick='dis(8)'/>
+	<input type='button' id='keys' value='9' onclick='dis(9)'/>
+	<input type='button' id='opkeys' value='+' onclick='dis("+")'/></br>
+	<input type='button' id='keys' value='4' onclick='dis(4)'/>
+	<input type='button' id='keys' value='5' onclick='dis(5)'/>
+	<input type='button' id='keys' value='6' onclick='dis(6)'/>
+	<input type='button' id='opkeys' value='-' onclick='dis("-")'"-"></br>
+	<input type='button' id='keys' value='1' onclick='dis(1)'/>
+	<input type='button' id='keys' value='2' onclick='dis(2)'/>
+	<input type='button' id='keys' value='3' onclick='dis(3)'/>
+	<input type='button' id='opkeys' value='*' onclick='dis("*")'/></br>
+	<input type='button' id='keys' value='0' onclick='dis(0)'/>
+	<input type='button' id='keys' value='.' onclick='dis(".")'/>
+	<input type='button' id='anskeys' value='=' onclick='eq()'/>
+	<input type='button' id='opkeys' value='/' onclick='dis("/")'/>
+</div>
+</body>
+</html>
